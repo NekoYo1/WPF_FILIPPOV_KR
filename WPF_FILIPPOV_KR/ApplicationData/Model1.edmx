@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KR_FILIPPOVModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BILET/PRICE">
+          <Key>
+            <PropertyRef Name="ID STRANA" />
+          </Key>
+          <Property Name="ID STRANA" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Price" Type="nvarchar(max)" />
+          <Property Name="Kyda" Type="nvarchar(max)" />
+          <Property Name="Otkyda" Type="nvarchar(max)" />
+          <Property Name="Vrema otpravki" Type="nvarchar(max)" />
+          <Property Name="ID SOTRUDNIKA" Type="int" />
+          <Property Name="ID CLIENT" Type="int" />
+          <Property Name="ID BILETA" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID CLIENT" />
+          </Key>
+          <Property Name="ID CLIENT" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Familia" Type="nvarchar(max)" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" />
+          <Property Name="Tel" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SOTRUDNIKI">
+          <Key>
+            <PropertyRef Name="ID SOTRUDNIKA" />
+          </Key>
+          <Property Name="ID SOTRUDNIKA" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Familia" Type="nvarchar(max)" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" />
+          <Property Name="Dolznost" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="STRANA">
+          <Key>
+            <PropertyRef Name="ID STRANA" />
+          </Key>
+          <Property Name="ID STRANA" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_BILET/PRICE_Client1">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="BILET/PRICE" Type="Self.BILET/PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID CLIENT" />
+            </Principal>
+            <Dependent Role="BILET/PRICE">
+              <PropertyRef Name="ID CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BILET/PRICE_SOTRUDNIKI1">
+          <End Role="SOTRUDNIKI" Type="Self.SOTRUDNIKI" Multiplicity="0..1" />
+          <End Role="BILET/PRICE" Type="Self.BILET/PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOTRUDNIKI">
+              <PropertyRef Name="ID SOTRUDNIKA" />
+            </Principal>
+            <Dependent Role="BILET/PRICE">
+              <PropertyRef Name="ID SOTRUDNIKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BILET/PRICE_STRANA">
+          <End Role="STRANA" Type="Self.STRANA" Multiplicity="1" />
+          <End Role="BILET/PRICE" Type="Self.BILET/PRICE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STRANA">
+              <PropertyRef Name="ID STRANA" />
+            </Principal>
+            <Dependent Role="BILET/PRICE">
+              <PropertyRef Name="ID STRANA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище KR_FILIPPOVModelContainer">
+          <EntitySet Name="BILET/PRICE" EntityType="Self.BILET/PRICE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOTRUDNIKI" EntityType="Self.SOTRUDNIKI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STRANA" EntityType="Self.STRANA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BILET/PRICE_Client1" Association="Self.FK_BILET/PRICE_Client1">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="BILET/PRICE" EntitySet="BILET/PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BILET/PRICE_SOTRUDNIKI1" Association="Self.FK_BILET/PRICE_SOTRUDNIKI1">
+            <End Role="SOTRUDNIKI" EntitySet="SOTRUDNIKI" />
+            <End Role="BILET/PRICE" EntitySet="BILET/PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BILET/PRICE_STRANA" Association="Self.FK_BILET/PRICE_STRANA">
+            <End Role="STRANA" EntitySet="STRANA" />
+            <End Role="BILET/PRICE" EntitySet="BILET/PRICE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KR_FILIPPOVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BILET_PRICE">
+          <Key>
+            <PropertyRef Name="ID_STRANA" />
+          </Key>
+          <Property Name="ID_STRANA" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kyda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otkyda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vrema_otpravki" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_SOTRUDNIKA" Type="Int32" />
+          <Property Name="ID_CLIENT" Type="Int32" />
+          <Property Name="ID_BILETA" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_BILET_PRICE_Client1" FromRole="BILET_PRICE" ToRole="Client" />
+          <NavigationProperty Name="SOTRUDNIKI" Relationship="Self.FK_BILET_PRICE_SOTRUDNIKI1" FromRole="BILET_PRICE" ToRole="SOTRUDNIKI" />
+          <NavigationProperty Name="STRANA" Relationship="Self.FK_BILET_PRICE_STRANA" FromRole="BILET_PRICE" ToRole="STRANA" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID_CLIENT" />
+          </Key>
+          <Property Name="ID_CLIENT" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Familia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BILET_PRICE" Relationship="Self.FK_BILET_PRICE_Client1" FromRole="Client" ToRole="BILET_PRICE" />
+        </EntityType>
+        <EntityType Name="SOTRUDNIKI">
+          <Key>
+            <PropertyRef Name="ID_SOTRUDNIKA" />
+          </Key>
+          <Property Name="ID_SOTRUDNIKA" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Familia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Dolznost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BILET_PRICE" Relationship="Self.FK_BILET_PRICE_SOTRUDNIKI1" FromRole="SOTRUDNIKI" ToRole="BILET_PRICE" />
+        </EntityType>
+        <EntityType Name="STRANA">
+          <Key>
+            <PropertyRef Name="ID_STRANA" />
+          </Key>
+          <Property Name="ID_STRANA" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BILET_PRICE" Relationship="Self.FK_BILET_PRICE_STRANA" FromRole="STRANA" ToRole="BILET_PRICE" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_BILET_PRICE_Client1">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="BILET_PRICE" Type="Self.BILET_PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID_CLIENT" />
+            </Principal>
+            <Dependent Role="BILET_PRICE">
+              <PropertyRef Name="ID_CLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BILET_PRICE_SOTRUDNIKI1">
+          <End Role="SOTRUDNIKI" Type="Self.SOTRUDNIKI" Multiplicity="0..1" />
+          <End Role="BILET_PRICE" Type="Self.BILET_PRICE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOTRUDNIKI">
+              <PropertyRef Name="ID_SOTRUDNIKA" />
+            </Principal>
+            <Dependent Role="BILET_PRICE">
+              <PropertyRef Name="ID_SOTRUDNIKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BILET_PRICE_STRANA">
+          <End Role="STRANA" Type="Self.STRANA" Multiplicity="1" />
+          <End Role="BILET_PRICE" Type="Self.BILET_PRICE" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="STRANA">
+              <PropertyRef Name="ID_STRANA" />
+            </Principal>
+            <Dependent Role="BILET_PRICE">
+              <PropertyRef Name="ID_STRANA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KR_FILIPPOVEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BILET_PRICE" EntityType="Self.BILET_PRICE" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="SOTRUDNIKI" EntityType="Self.SOTRUDNIKI" />
+          <EntitySet Name="STRANA" EntityType="Self.STRANA" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_BILET_PRICE_Client1" Association="Self.FK_BILET_PRICE_Client1">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="BILET_PRICE" EntitySet="BILET_PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BILET_PRICE_SOTRUDNIKI1" Association="Self.FK_BILET_PRICE_SOTRUDNIKI1">
+            <End Role="SOTRUDNIKI" EntitySet="SOTRUDNIKI" />
+            <End Role="BILET_PRICE" EntitySet="BILET_PRICE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BILET_PRICE_STRANA" Association="Self.FK_BILET_PRICE_STRANA">
+            <End Role="STRANA" EntitySet="STRANA" />
+            <End Role="BILET_PRICE" EntitySet="BILET_PRICE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KR_FILIPPOVModelContainer" CdmEntityContainer="KR_FILIPPOVEntities">
+          <EntitySetMapping Name="BILET_PRICE">
+            <EntityTypeMapping TypeName="KR_FILIPPOVModel.BILET_PRICE">
+              <MappingFragment StoreEntitySet="BILET/PRICE">
+                <ScalarProperty Name="ID_STRANA" ColumnName="ID STRANA" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Kyda" ColumnName="Kyda" />
+                <ScalarProperty Name="Otkyda" ColumnName="Otkyda" />
+                <ScalarProperty Name="Vrema_otpravki" ColumnName="Vrema otpravki" />
+                <ScalarProperty Name="ID_SOTRUDNIKA" ColumnName="ID SOTRUDNIKA" />
+                <ScalarProperty Name="ID_CLIENT" ColumnName="ID CLIENT" />
+                <ScalarProperty Name="ID_BILETA" ColumnName="ID BILETA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="KR_FILIPPOVModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID_CLIENT" ColumnName="ID CLIENT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOTRUDNIKI">
+            <EntityTypeMapping TypeName="KR_FILIPPOVModel.SOTRUDNIKI">
+              <MappingFragment StoreEntitySet="SOTRUDNIKI">
+                <ScalarProperty Name="ID_SOTRUDNIKA" ColumnName="ID SOTRUDNIKA" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Dolznost" ColumnName="Dolznost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STRANA">
+            <EntityTypeMapping TypeName="KR_FILIPPOVModel.STRANA">
+              <MappingFragment StoreEntitySet="STRANA">
+                <ScalarProperty Name="ID_STRANA" ColumnName="ID STRANA" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KR_FILIPPOVModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

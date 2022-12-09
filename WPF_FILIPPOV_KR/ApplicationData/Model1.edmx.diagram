@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71b24f78603445238d3a1adcd07625f2" Name="Diagram1">
+        <EntityTypeShape EntityType="KR_FILIPPOVModel.BILET_PRICE" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR_FILIPPOVModel.Client" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR_FILIPPOVModel.SOTRUDNIKI" Width="1.5" PointX="5.125" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR_FILIPPOVModel.STRANA" Width="1.5" PointX="0.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KR_FILIPPOVModel.sysdiagrams" Width="1.5" PointX="8" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="KR_FILIPPOVModel.FK_BILET_PRICE_Client1" ManuallyRouted="false" />
+        <AssociationConnector Association="KR_FILIPPOVModel.FK_BILET_PRICE_SOTRUDNIKI1" ManuallyRouted="false" />
+        <AssociationConnector Association="KR_FILIPPOVModel.FK_BILET_PRICE_STRANA" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
